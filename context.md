@@ -25,7 +25,16 @@
 ## Color Update (2024-06-09)
 - The main blue color (`#001d6c`) and orange (`#e88936`) have been updated in both the Hero and Navbar components using Tailwind's arbitrary color classes for all relevant text and backgrounds.
 
+## Hero Comments Update (2024-06-09)
+- Added simple comment headers to `src/pages/1.Home/1hero.jsx` for each major section (imports, component, left text, right image, background shapes, export) for easier code navigation.
+
 ## Next Steps
 - Replace placeholder components with actual page components as needed.
 - Style the Navbar further if required.
 - Update `menuData` if navigation structure changes.
+
+## Our Solutions Slider (2024-06-09)
+- Implemented a horizontally scrollable, looping slider in `src/pages/1.Home/2OurSolutions.jsx`.
+- Solutions are defined in a data array (icon + label).
+- Uses Tailwind for styling and Iconify for icons.
+- Section is imported and rendered in `0home.jsx` below the Hero.
