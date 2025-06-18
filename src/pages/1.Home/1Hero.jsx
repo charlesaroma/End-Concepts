@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from '@iconify/react';
 import HeroImage from '../../assets/heroimage.png'
 
-const Hero = () => {
+const hero = () => {
   return (
     <section className="w-full flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0 px-4 md:px-16 py-12 md:py-20 bg-white relative overflow-hidden">
       {/* Left: Text Content */}
@@ -33,4 +33,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default hero;
