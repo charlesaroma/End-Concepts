@@ -11,9 +11,10 @@ const hero = () => {
           <span className="block font-bold mb-2 md:mb-4 md:text-2xl lg:text-4xl text-[#e88936]">We are CRAG</span>
           <span className="block font-bold text-[#001d6c]">Solutions for the<br />future</span>
         </h2>
-        <button className="mt-8 px-8 py-3 rounded-full bg-[#001d6c] text-white font-medium flex items-center gap-2 shadow-lg hover:bg-[#163a8a] transition">
+        <button className="mt-8 px-8 py-3 rounded-full bg-[#001d6c] cursor-pointer text-white font-medium flex items-center gap-2 shadow-lg hover:bg-[#163a8a] transition">
           See all our expertise
-          <Icon icon="mdi:arrow-right" className="text-xl" />
+          <span className='p-2 bg-gray-500/50 rounded-full'><Icon icon="mdi:arrow-right" className="text-xl" /></span>
+          
         </button>
       </div>
 
