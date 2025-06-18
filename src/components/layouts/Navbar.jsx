@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 
+// Menu Data
 const menuData = [
   { label: 'Home', path: '/' },
   {
@@ -53,6 +54,7 @@ const Navbar = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
   const closeTimeout = useRef(null);
 
+  // Dropdown Handlers
   const handleMouseEnter = (idx) => {
     clearTimeout(closeTimeout.current);
     setOpenDropdown(idx);
@@ -61,7 +63,7 @@ const Navbar = () => {
   const handleMouseLeave = () => {
     closeTimeout.current = setTimeout(() => {
       setOpenDropdown(null);
-    }, 200); // Delay in ms
+    }, 200);
   };
 
   const handleDropdownClick = (idx) => {
@@ -69,13 +71,14 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full flex items-center justify-between px-20 py-4 shadow-sm bg-white">
-      <Link to="/" className="flex items-center">
-        <img src="/cragroup.svg" alt="CRA Group Logo" className="h-16" />
+    <nav className="w-full flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-20 py-3 md:py-4 shadow-sm bg-white">
+      {/* Logo */}
+      <Link to="/" className="flex items-center flex-shrink-0">
+        <img src="/cragroup.svg" alt="CRA Group Logo" className="h-8 md:h-10 lg:h-16" />
       </Link>
 
       {/* Desktop Menu */}
-      <ul className="hidden md:flex gap-6 items-center">
+      <ul className="hidden md:flex gap-4 lg:gap-8 items-center">
         {menuData.map((item, idx) => (
           <li
             key={item.label}
@@ -87,9 +90,11 @@ const Navbar = () => {
               <>
                 <button
                   className={`flex items-center gap-1 font-medium transition-colors cursor-pointer ${
-                    openDropdown === idx ? 'text-orange-400' : 'text-blue-900 hover:text-orange-400'
+                    openDropdown === idx ? 'text-[#e88936]' : 'text-[#001d6c] hover:text-[#e88936]'
                   }`}
                   onClick={() => handleDropdownClick(idx)}
+                  aria-haspopup="true"
+                  aria-expanded={openDropdown === idx}
                 >
                   {item.label}
                   <Icon icon="mdi:chevron-down" className="text-base" />
@@ -102,8 +107,8 @@ const Navbar = () => {
                           <NavLink
                             to={sub.path}
                             className={({ isActive }) =>
-                              `block px-6 py-2 whitespace-nowrap hover:bg-gray-100 text-blue-900 cursor-pointer ${
-                                isActive ? 'font-medium text-orange-400' : ''
+                              `block px-6 py-2 whitespace-nowrap hover:bg-gray-100 text-[#001d6c] cursor-pointer ${
+                                isActive ? 'font-medium text-[#e88936]' : ''
                               }`
                             }
                           >
@@ -120,7 +125,7 @@ const Navbar = () => {
                 to={item.path}
                 className={({ isActive }) =>
                   `font-medium transition-colors cursor-pointer ${
-                    isActive ? 'text-orange-400' : 'text-blue-900 hover:text-orange-400'
+                    isActive ? 'text-[#e88936]' : 'text-[#001d6c] hover:text-[#e88936]'
                   }`
                 }
               >
@@ -132,19 +137,20 @@ const Navbar = () => {
       </ul>
 
       {/* Mobile Menu Button */}
-      <button className="md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
-        <Icon icon={mobileOpen ? 'mdi:close' : 'mdi:menu'} className="text-3xl text-blue-900" />
+      <button className="md:hidden ml-2" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
+        <Icon icon={mobileOpen ? 'mdi:close' : 'mdi:menu'} className="text-3xl text-[#001d6c]" />
       </button>
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 bg-white z-40 flex flex-col p-6 transition-all">
+        <div className="fixed inset-0 bg-white z-40 flex flex-col p-6 transition-all overflow-y-auto">
           <div className="flex items-center justify-between mb-6">
             <img src="/cragroup.svg" alt="CRA Group Logo" className="h-10" />
-            <button onClick={() => setMobileOpen(false)}>
-              <Icon icon="mdi:close" className="text-3xl text-blue-900" />
+            <button onClick={() => setMobileOpen(false)} aria-label="Close menu">
+              <Icon icon="mdi:close" className="text-3xl text-[#001d6c]" />
             </button>
           </div>
+          {/* Mobile Menu List */}
           <ul className="flex flex-col gap-2">
             {menuData.map((item, idx) => (
               <li key={item.label}>
@@ -152,9 +158,11 @@ const Navbar = () => {
                   <div>
                     <button
                       className={`flex w-full items-center justify-between py-2 px-2 font-medium cursor-pointer ${
-                        openDropdown === idx ? 'text-orange-400' : 'text-blue-900'
+                        openDropdown === idx ? 'text-[#e88936]' : 'text-[#001d6c]'
                       }`}
                       onClick={() => handleDropdownClick(idx)}
+                      aria-haspopup="true"
+                      aria-expanded={openDropdown === idx}
                     >
                       {item.label}
                       <Icon
@@ -170,8 +178,8 @@ const Navbar = () => {
                             <NavLink
                               to={sub.path}
                               className={({ isActive }) =>
-                                `block py-2 px-2 text-blue-900 cursor-pointer ${
-                                  isActive ? 'font-semibold text-orange-400' : ''
+                                `block py-2 px-2 text-[#001d6c] cursor-pointer ${
+                                  isActive ? 'font-semibold text-[#e88936]' : ''
                                 }`
                               }
                               onClick={() => setMobileOpen(false)}
@@ -188,7 +196,7 @@ const Navbar = () => {
                     to={item.path}
                     className={({ isActive }) =>
                       `block py-2 px-2 font-medium cursor-pointer ${
-                        isActive ? 'text-orange-400' : 'text-blue-900'
+                        isActive ? 'text-[#e88936]' : 'text-[#001d6c]'
                       }`
                     }
                     onClick={() => setMobileOpen(false)}
