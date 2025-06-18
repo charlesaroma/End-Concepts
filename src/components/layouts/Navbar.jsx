@@ -95,7 +95,7 @@ const Navbar = () => {
                   <Icon icon="mdi:chevron-down" className="text-base" />
                 </button>
                 {openDropdown === idx && (
-                  <div className="absolute left-0 top-full mt-2 min-w-[200px] bg-white shadow-lg rounded z-20 transition-opacity">
+                  <div className="absolute left-0 top-full mt-2 min-w-[200px] font-medium bg-white shadow-lg rounded z-20 transition-opacity">
                     <ul className="py-2" onMouseEnter={() => clearTimeout(closeTimeout.current)} onMouseLeave={handleMouseLeave}>
                       {item.dropdown.map((sub) => (
                         <li key={sub.label}>
