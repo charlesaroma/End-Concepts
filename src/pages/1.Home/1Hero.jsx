@@ -28,9 +28,7 @@ const hero = () => {
         />
       </div>
 
-      {/* Background Shapes (optional, for effect) */}
-      <div className="absolute left-0 top-0 w-2/3 h-2/3 bg-[#e88936]/20 opacity-40 rounded-3xl -z-0 blur-3xl" />
-      <div className="absolute left-1/4 top-1/3 w-2/3 h-2/3 bg-[#001d6c]/10 opacity-30 rounded-3xl -z-0 blur-3xl" />
+
     </section>
   );
 };
