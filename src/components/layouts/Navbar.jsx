@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 
 const menuData = [
-  {
-    label: 'Home',
-    path: '/',
-  },
+  { label: 'Home', path: '/' },
   {
     label: 'Who We Are',
     dropdown: [
@@ -48,66 +45,83 @@ const menuData = [
       { label: 'Post Migration Services', path: '/services/post-migration' },
     ],
   },
-  {
-    label: 'Contact Us',
-    path: '/contact',
-  },
+  { label: 'Contact Us', path: '/contact' },
 ];
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const closeTimeout = useRef(null);
 
-  const handleDropdown = (idx) => {
+  const handleMouseEnter = (idx) => {
+    clearTimeout(closeTimeout.current);
+    setOpenDropdown(idx);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimeout.current = setTimeout(() => {
+      setOpenDropdown(null);
+    }, 200); // Delay in ms
+  };
+
+  const handleDropdownClick = (idx) => {
     setOpenDropdown(openDropdown === idx ? null : idx);
   };
 
   return (
-    <nav className="w-full flex items-center justify-between px-6 py-2 shadow-sm bg-white">
+    <nav className="w-full flex items-center justify-between px-20 py-4 shadow-sm bg-white">
       <Link to="/" className="flex items-center">
-        <img src="/cragroup.svg" alt="CRA Group Logo" className="h-10" />
+        <img src="/cragroup.svg" alt="CRA Group Logo" className="h-16" />
       </Link>
+
       {/* Desktop Menu */}
-      <ul className="hidden md:flex gap-8 items-center">
+      <ul className="hidden md:flex gap-6 items-center">
         {menuData.map((item, idx) => (
-          <li key={item.label} className="relative group">
+          <li
+            key={item.label}
+            className="relative"
+            onMouseEnter={() => handleMouseEnter(idx)}
+            onMouseLeave={handleMouseLeave}
+          >
             {item.dropdown ? (
               <>
                 <button
-                  className={`flex items-center gap-1 font-medium transition-colors ${openDropdown === idx ? 'text-orange-400' : 'text-blue-900 group-hover:text-orange-400'}`}
-                  onClick={() => handleDropdown(idx)}
-                  onMouseEnter={() => setOpenDropdown(idx)}
-                  onMouseLeave={() => setOpenDropdown(null)}
+                  className={`flex items-center gap-1 font-medium transition-colors cursor-pointer ${
+                    openDropdown === idx ? 'text-orange-400' : 'text-blue-900 hover:text-orange-400'
+                  }`}
+                  onClick={() => handleDropdownClick(idx)}
                 >
                   {item.label}
                   <Icon icon="mdi:chevron-down" className="text-base" />
                 </button>
-                <div
-                  className={`absolute left-0 top-full mt-2 min-w-[200px] bg-white shadow-lg rounded z-20 transition-all ${openDropdown === idx ? 'block' : 'hidden'}`}
-                  onMouseEnter={() => setOpenDropdown(idx)}
-                  onMouseLeave={() => setOpenDropdown(null)}
-                >
-                  <ul className="py-2">
-                    {item.dropdown.map((sub, subIdx) => (
-                      <li key={sub.label}>
-                        <NavLink
-                          to={sub.path}
-                          className={({ isActive }) =>
-                            `block px-6 py-2 whitespace-nowrap hover:bg-gray-100 text-blue-900 ${isActive ? 'font-semibold text-orange-400' : ''}`
-                          }
-                        >
-                          {sub.label}
-                        </NavLink>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {openDropdown === idx && (
+                  <div className="absolute left-0 top-full mt-2 min-w-[200px] bg-white shadow-lg rounded z-20 transition-opacity">
+                    <ul className="py-2" onMouseEnter={() => clearTimeout(closeTimeout.current)} onMouseLeave={handleMouseLeave}>
+                      {item.dropdown.map((sub) => (
+                        <li key={sub.label}>
+                          <NavLink
+                            to={sub.path}
+                            className={({ isActive }) =>
+                              `block px-6 py-2 whitespace-nowrap hover:bg-gray-100 text-blue-900 cursor-pointer ${
+                                isActive ? 'font-medium text-orange-400' : ''
+                              }`
+                            }
+                          >
+                            {sub.label}
+                          </NavLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </>
             ) : (
               <NavLink
                 to={item.path}
                 className={({ isActive }) =>
-                  `font-medium transition-colors ${isActive ? 'text-orange-400' : 'text-blue-900 hover:text-orange-400'}`
+                  `font-medium transition-colors cursor-pointer ${
+                    isActive ? 'text-orange-400' : 'text-blue-900 hover:text-orange-400'
+                  }`
                 }
               >
                 {item.label}
@@ -116,10 +130,12 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
+
       {/* Mobile Menu Button */}
       <button className="md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
         <Icon icon={mobileOpen ? 'mdi:close' : 'mdi:menu'} className="text-3xl text-blue-900" />
       </button>
+
       {/* Mobile Menu */}
       {mobileOpen && (
         <div className="fixed inset-0 bg-white z-40 flex flex-col p-6 transition-all">
@@ -135,11 +151,17 @@ const Navbar = () => {
                 {item.dropdown ? (
                   <div>
                     <button
-                      className={`flex w-full items-center justify-between py-2 px-2 font-medium ${openDropdown === idx ? 'text-orange-400' : 'text-blue-900'}`}
-                      onClick={() => handleDropdown(idx)}
+                      className={`flex w-full items-center justify-between py-2 px-2 font-medium cursor-pointer ${
+                        openDropdown === idx ? 'text-orange-400' : 'text-blue-900'
+                      }`}
+                      onClick={() => handleDropdownClick(idx)}
                     >
                       {item.label}
-                      <Icon icon={openDropdown === idx ? 'mdi:chevron-up' : 'mdi:chevron-down'} />
+                      <Icon
+                        icon={
+                          openDropdown === idx ? 'mdi:chevron-up' : 'mdi:chevron-down'
+                        }
+                      />
                     </button>
                     {openDropdown === idx && (
                       <ul className="pl-4 border-l border-gray-200">
@@ -148,7 +170,9 @@ const Navbar = () => {
                             <NavLink
                               to={sub.path}
                               className={({ isActive }) =>
-                                `block py-2 px-2 text-blue-900 ${isActive ? 'font-semibold text-orange-400' : ''}`
+                                `block py-2 px-2 text-blue-900 cursor-pointer ${
+                                  isActive ? 'font-semibold text-orange-400' : ''
+                                }`
                               }
                               onClick={() => setMobileOpen(false)}
                             >
@@ -163,7 +187,9 @@ const Navbar = () => {
                   <NavLink
                     to={item.path}
                     className={({ isActive }) =>
-                      `block py-2 px-2 font-medium ${isActive ? 'text-orange-400' : 'text-blue-900'}`
+                      `block py-2 px-2 font-medium cursor-pointer ${
+                        isActive ? 'text-orange-400' : 'text-blue-900'
+                      }`
                     }
                     onClick={() => setMobileOpen(false)}
                   >

@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/layouts/Navbar';
 
 // Placeholder components for each route
-const Placeholder = ({ label }) => <div className="p-8 text-2xl">{label}</div>;
+const Placeholder = ({ label }) => <div className="px-20 text-2xl">{label}</div>;
 
 function App() {
   return (
