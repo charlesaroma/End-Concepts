@@ -50,6 +50,18 @@ const HomeService = () => {
   const rightContentRef = useRef(null);
   const gridRef = useRef(null);
   const [translateY, setTranslateY] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768); // Tailwind's 'md' breakpoint
+    };
+
+    checkScreenSize(); // Initial check
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   const handleScroll = useCallback(() => {
     const runway = runwayRef.current;
@@ -86,11 +98,51 @@ const HomeService = () => {
   }, []);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [handleScroll]);
+    if (!isMobile) {
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, [handleScroll, isMobile]);
+
+  if (isMobile) {
+    return (
+      <section className="w-full py-16 bg-[#fdf9f2]">
+        <div className="max-w-7xl mx-auto flex flex-col gap-10 px-4">
+          {/* Left Content */}
+          <div className="flex flex-col justify-center">
+            <h2 className="text-3xl font-bold text-[#001d6c] mb-4">Our Services</h2>
+            <p className="text-[#001d6c] mb-8">
+              Computer Revolution Africa Group provides end-to-end IT services, including consultancy, managed IT,
+              cybersecurity, cloud, and infrastructure solutions, empowering businesses to enhance efficiency,
+              security, and competitiveness in the digital age.
+            </p>
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-[#001d6c] text-white font-medium shadow-lg hover:bg-[#163a8a] transition w-max"
+            >
+              See all our Services
+              <span className="p-2 bg-gray-500/50 rounded-full">
+                <Icon icon="mdi:arrow-right" className="text-xl" />
+              </span>
+            </Link>
+          </div>
+
+          {/* Right Content */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {services.map((service, idx) => (
+              <div key={idx} className="flex flex-col gap-2 bg-white rounded-lg p-6 shadow-sm min-w-[300px]">
+                <Icon icon={service.icon} className="text-3xl text-[#e88936] mb-2" />
+                <h3 className="text-lg font-semibold text-[#001d6c]">{service.title}</h3>
+                <p className="text-[#001d6c] text-sm">{service.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section ref={runwayRef} className="relative w-full h-[250vh] bg-[#fdf9f2]">
