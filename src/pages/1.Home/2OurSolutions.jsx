@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Icon } from '@iconify/react';
 
 const solutions = [
@@ -13,58 +13,92 @@ const solutions = [
 
 const OurSolutions = () => {
   const sliderRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    const slider = sliderRef.current;
-    let scrollAmount = 0;
+    if (isPaused) return;
 
     const interval = setInterval(() => {
-      if (!slider) return;
-
-      const firstChild = slider.children[0];
-      const childWidth = firstChild.offsetWidth + 24; // 24 = gap-6
-
-      scrollAmount += childWidth;
-
-      if (scrollAmount >= slider.scrollWidth / 2) {
-        scrollAmount = 0;
-        slider.scrollTo({ left: 0 });
-      } else {
-        slider.scrollTo({
-          left: scrollAmount,
-          behavior: 'smooth',
-        });
-      }
-    }, 2000);
+      setCurrentIndex((prevIndex) => {
+        // Move to next slide, reset to 0 when we reach the end of original solutions
+        return (prevIndex + 1) % solutions.length;
+      });
+    }, 3000); // Change slide every 3 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isPaused]);
 
-  const loopedSolutions = [...solutions, ...solutions];
+  // Create multiple copies for seamless loop
+  const loopedSolutions = [...solutions, ...solutions, ...solutions];
+
+  const getTranslateValue = () => {
+    const slider = sliderRef.current;
+    if (!slider || !slider.children[0]) return 0;
+    
+    const itemWidth = slider.children[0].offsetWidth + 16; // 16 for gap-4
+    const visibleCards = 5;
+    const containerWidth = slider.parentElement.offsetWidth;
+    const totalVisibleWidth = visibleCards * itemWidth - 16; // subtract one gap
+    const offset = (containerWidth - totalVisibleWidth) / 2; // center the visible cards
+    
+    return offset - (currentIndex * itemWidth);
+  };
 
   return (
-    <section className="w-full py-10 overflow-hidden">
-      <h2 className="text-center text-2xl md:text-3xl font-semibold mb-8 text-[#001d6c]">
-        Our Solutions
-      </h2>
-      <div className="max-w-screen-xl mx-auto overflow-hidden px-4">
-        <div
-          ref={sliderRef}
-          className="flex gap-6 w-max overflow-x-auto scrollbar-hide scroll-smooth"
-        >
-          {loopedSolutions.map((item, idx) => (
-            <div
+    <section className="w-full py-10 bg-gray-50">
+      <div className="px-4 sm:px-6 lg:px-8">
+        <h2 className="text-center text-2xl md:text-3xl lg:text-4xl font-semibold mb-8 text-[#001d6c]">
+          Our Solutions
+        </h2>
+        
+        {/* Slider Container */}
+        <div className="relative w-full overflow-hidden">
+          <div
+            ref={sliderRef}
+            className="flex gap-4 transition-transform duration-500 ease-in-out"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            style={{ 
+              transform: `translateX(${getTranslateValue()}px)`,
+              width: 'max-content' 
+            }}
+          >
+            {loopedSolutions.map((item, idx) => (
+              <div
+                key={`${item.label}-${idx}`}
+                className="flex items-center gap-2 bg-[#001d6c] rounded-lg px-3 py-3 
+                           w-[140px] sm:w-[160px] md:w-[180px] 
+                           cursor-pointer hover:scale-105 hover:bg-[#002080] 
+                           transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                <Icon 
+                  icon={item.icon} 
+                  className="text-2xl sm:text-3xl md:text-4xl text-[#e88936] flex-shrink-0" 
+                />
+                <span className="text-white font-medium text-[10px] sm:text-xs 
+                               leading-tight">
+                  {item.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Dots Indicator */}
+        <div className="flex justify-center gap-2 mt-6">
+          {solutions.map((_, idx) => (
+            <button
               key={idx}
-              className="flex items-center gap-3 bg-[#001d6c] rounded-md px-5 py-4 min-w-[200px] cursor-pointer hover:scale-105 transition-transform duration-300"
-              style={{ flex: '0 0 auto' }}
-            >
-              <Icon icon={item.icon} className="text-2xl text-[#e88936]" />
-              <span className="text-white font-normal text-sm md:text-sm leading-tight whitespace-nowrap">
-                {item.label}
-              </span>
-            </div>
+              onClick={() => setCurrentIndex(idx)}
+              className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                idx === currentIndex ? 'bg-[#001d6c]' : 'bg-gray-300'
+              }`}
+            />
           ))}
         </div>
+        
+
       </div>
     </section>
   );
