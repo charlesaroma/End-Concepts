@@ -37,12 +37,7 @@ const OurSolutions = () => {
     if (!slider || !slider.children[0]) return 0;
     
     const itemWidth = slider.children[0].offsetWidth + 16; // 16 for gap-4
-    const visibleCards = 5;
-    const containerWidth = slider.parentElement.offsetWidth;
-    const totalVisibleWidth = visibleCards * itemWidth - 16; // subtract one gap
-    const offset = (containerWidth - totalVisibleWidth) / 2; // center the visible cards
-    
-    return offset - (currentIndex * itemWidth);
+    return -(currentIndex * itemWidth);
   };
 
   return (
@@ -91,7 +86,7 @@ const OurSolutions = () => {
             <button
               key={idx}
               onClick={() => setCurrentIndex(idx)}
-              className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+              className={`w-2 h-2 rounded-full transition-colors duration-300 cursor-pointer ${
                 idx === currentIndex ? 'bg-[#001d6c]' : 'bg-gray-300'
               }`}
             />

@@ -1,6 +1,6 @@
-import React from 'react'
-import { Icon } from '@iconify/react'
-import { Link } from 'react-router-dom'
+import React, { useRef, useEffect, useCallback } from 'react';
+import { Icon } from '@iconify/react';
+import { Link } from 'react-router-dom';
 
 const services = [
   {
@@ -43,18 +43,57 @@ const services = [
     title: 'Deployment and Migration Services',
     desc: 'From implementing new projects to upgrading existing systems, our deployment and migration services are designed to deliver on time, within budget, and to the highest standards.',
   },
-]
+];
 
 const HomeService = () => {
+  const containerRef = useRef(null);
+  const rightContentRef = useRef(null);
+
+  const handleWheel = useCallback(e => {
+    const rightContent = rightContentRef.current;
+    if (rightContent) {
+      const { scrollTop, scrollHeight, clientHeight } = rightContent;
+      const scrollAmount = e.deltaY;
+
+      // If we're scrolling up but already at the top, or scrolling down but already at the bottom,
+      // let the default page scroll happen.
+      if ((scrollAmount < 0 && scrollTop === 0) || (scrollAmount > 0 && scrollTop + clientHeight >= scrollHeight - 1)) {
+        return;
+      }
+
+      // Otherwise, prevent the page from scrolling and scroll the content on the right.
+      e.preventDefault();
+      rightContent.scrollTop += scrollAmount;
+    }
+  }, []);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('wheel', handleWheel, { passive: false });
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('wheel', handleWheel);
+      }
+    };
+  }, [handleWheel]);
+
   return (
     <section className="w-full py-16 bg-[#fdf9f2]">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-10 px-4 md:px-8 h-[500px]">
-        {/* Left Content */}
-        <div className="md:w-1/3 flex flex-col justify-start">
+      {/* This container will capture the scroll wheel events */}
+      <div
+        ref={containerRef}
+        className="max-w-7xl mx-auto flex flex-col md:flex-row gap-10 px-4 md:px-8 h-[600px] md:h-[700px] relative"
+      >
+        {/* Left Content - Now truly sticky within its parent 'h-screen' or 'h-[600px]' */}
+        <div className="md:w-1/3 flex flex-col sticky top-16 md:top-20 h-full"> {/* Adjust top value as needed for header */}
           <h2 className="text-3xl md:text-4xl font-bold text-[#001d6c] mb-4">Our Services</h2>
           <p className="text-[#001d6c] mb-8">
             Computer Revolution Africa Group provides end-to-end IT services, including consultancy, managed IT,
-            cybersecurity, cloud, and infrastructure solutions, empowering businesses to enhance efficiency, security, and competitiveness in the digital age.
+            cybersecurity, cloud, and infrastructure solutions, empowering businesses to enhance efficiency, security,
+            and competitiveness in the digital age.
           </p>
           <Link
             to="/services"
@@ -67,9 +106,14 @@ const HomeService = () => {
           </Link>
         </div>
 
-        {/* Right Content */}
-        <div className="md:w-2/3 h-full overflow-hidden">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 h-full overflow-y-auto pr-2">
+        {/* Right Content - This section is now the primary scrollable area for services */}
+        <div className="md:w-2/3 h-full flex flex-col">
+          <div
+            ref={rightContentRef}
+            // Added classes to hide scrollbar
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6 flex-grow overflow-y-scroll pr-2 overscroll-y-contain
+                       [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          >
             {services.map((service, idx) => (
               <div key={idx} className="flex flex-col gap-2 bg-white rounded-lg p-6 shadow-sm min-w-[300px]">
                 <Icon icon={service.icon} className="text-3xl text-[#e88936] mb-2" />
@@ -81,7 +125,7 @@ const HomeService = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default HomeService
+export default HomeService;
