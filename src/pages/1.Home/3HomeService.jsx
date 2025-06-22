@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
 
@@ -46,81 +46,92 @@ const services = [
 ];
 
 const HomeService = () => {
-  const containerRef = useRef(null);
+  const runwayRef = useRef(null);
   const rightContentRef = useRef(null);
+  const gridRef = useRef(null);
+  const [translateY, setTranslateY] = useState(0);
 
-  const handleWheel = useCallback(e => {
+  const handleScroll = useCallback(() => {
+    const runway = runwayRef.current;
+    const grid = gridRef.current;
     const rightContent = rightContentRef.current;
-    if (rightContent) {
-      const { scrollTop, scrollHeight, clientHeight } = rightContent;
-      const scrollAmount = e.deltaY;
 
-      // If we're scrolling up but already at the top, or scrolling down but already at the bottom,
-      // let the default page scroll happen.
-      if ((scrollAmount < 0 && scrollTop === 0) || (scrollAmount > 0 && scrollTop + clientHeight >= scrollHeight - 1)) {
-        return;
-      }
+    if (!runway || !grid || !rightContent) {
+      return;
+    }
 
-      // Otherwise, prevent the page from scrolling and scroll the content on the right.
-      e.preventDefault();
-      rightContent.scrollTop += scrollAmount;
+    const { top, height } = runway.getBoundingClientRect();
+    const runwayScrollableDist = height - window.innerHeight;
+
+    // Before scrolling into the component
+    if (top > 0) {
+      setTranslateY(0);
+      return;
+    }
+    // After scrolling past the component
+    if (top < -runwayScrollableDist) {
+      const maxGridScroll = grid.scrollHeight - rightContent.clientHeight;
+      setTranslateY(-maxGridScroll);
+      return;
+    }
+
+    // When the component is active in the viewport
+    const progress = -top / runwayScrollableDist;
+    const maxGridScroll = grid.scrollHeight - rightContent.clientHeight;
+
+    if (maxGridScroll > 0) {
+      const newTranslateY = -progress * maxGridScroll;
+      setTranslateY(newTranslateY);
     }
   }, []);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener('wheel', handleWheel, { passive: false });
-    }
-
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      if (container) {
-        container.removeEventListener('wheel', handleWheel);
-      }
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, [handleWheel]);
+  }, [handleScroll]);
 
   return (
-    <section className="w-full py-16 bg-[#fdf9f2]">
-      {/* This container will capture the scroll wheel events */}
-      <div
-        ref={containerRef}
-        className="max-w-7xl mx-auto flex flex-col md:flex-row gap-10 px-4 md:px-8 h-[600px] md:h-[700px] relative"
-      >
-        {/* Left Content - Now truly sticky within its parent 'h-screen' or 'h-[600px]' */}
-        <div className="md:w-1/3 flex flex-col sticky top-16 md:top-20 h-full"> {/* Adjust top value as needed for header */}
-          <h2 className="text-3xl md:text-4xl font-bold text-[#001d6c] mb-4">Our Services</h2>
-          <p className="text-[#001d6c] mb-8">
-            Computer Revolution Africa Group provides end-to-end IT services, including consultancy, managed IT,
-            cybersecurity, cloud, and infrastructure solutions, empowering businesses to enhance efficiency, security,
-            and competitiveness in the digital age.
-          </p>
-          <Link
-            to="/services"
-            className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-[#001d6c] text-white font-medium shadow-lg hover:bg-[#163a8a] transition w-max"
-          >
-            See all our Services
-            <span className="p-2 bg-gray-500/50 rounded-full">
-              <Icon icon="mdi:arrow-right" className="text-xl" />
-            </span>
-          </Link>
-        </div>
+    <section ref={runwayRef} className="relative w-full h-[250vh] bg-[#fdf9f2]">
+      <div className="sticky top-0 h-screen w-full flex items-center">
+        <div className="max-w-7xl w-full mx-auto flex flex-col md:flex-row gap-10 px-4 md:px-8 h-[75vh]">
+          {/* Left Content */}
+          <div className="md:w-1/3 flex flex-col justify-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#001d6c] mb-4">Our Services</h2>
+            <p className="text-[#001d6c] mb-8">
+              Computer Revolution Africa Group provides end-to-end IT services, including consultancy, managed IT,
+              cybersecurity, cloud, and infrastructure solutions, empowering businesses to enhance efficiency,
+              security, and competitiveness in the digital age.
+            </p>
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-[#001d6c] text-white font-medium shadow-lg hover:bg-[#163a8a] transition w-max"
+            >
+              See all our Services
+              <span className="p-2 bg-gray-500/50 rounded-full">
+                <Icon icon="mdi:arrow-right" className="text-xl" />
+              </span>
+            </Link>
+          </div>
 
-        {/* Right Content - This section is now the primary scrollable area for services */}
-        <div className="md:w-2/3 h-full flex flex-col">
-          <div
-            ref={rightContentRef}
-            // Added classes to hide scrollbar
-            className="grid grid-cols-1 sm:grid-cols-2 gap-6 flex-grow overflow-y-scroll pr-2 overscroll-y-contain
-                       [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-          >
-            {services.map((service, idx) => (
-              <div key={idx} className="flex flex-col gap-2 bg-white rounded-lg p-6 shadow-sm min-w-[300px]">
-                <Icon icon={service.icon} className="text-3xl text-[#e88936] mb-2" />
-                <h3 className="text-lg font-semibold text-[#001d6c]">{service.title}</h3>
-                <p className="text-[#001d6c] text-sm">{service.desc}</p>
+          {/* Right Content */}
+          <div className="md:w-2/3 h-full flex flex-col justify-center">
+            <div ref={rightContentRef} className="flex-grow overflow-hidden">
+              <div
+                ref={gridRef}
+                className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+                style={{ transform: `translateY(${translateY}px)` }}
+              >
+                {services.map((service, idx) => (
+                  <div key={idx} className="flex flex-col gap-2 bg-white rounded-lg p-6 shadow-sm min-w-[300px]">
+                    <Icon icon={service.icon} className="text-3xl text-[#e88936] mb-2" />
+                    <h3 className="text-lg font-semibold text-[#001d6c]">{service.title}</h3>
+                    <p className="text-[#001d6c] text-sm">{service.desc}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
