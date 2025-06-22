@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/layouts/Navbar';
+import Footer from './components/layouts/Footer';
 // Home
 import Home from './pages/1.Home/0home';
 import Hero from './pages/1.Home/1Hero';
@@ -50,33 +51,36 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {/* Home subcomponents can be routed or used inside Home if needed */}
-        <Route path="/who-we-are/about-us" element={<AboutUs />} />
-        <Route path="/who-we-are/partners" element={<Partners />} />
-        <Route path="/solutions/cloud" element={<CloudSolutions />} />
-        <Route path="/solutions/data" element={<DataSolutions />} />
-        <Route path="/solutions/ai" element={<AISolutions />} />
-        <Route path="/solutions/network" element={<NetworkSolutions />} />
-        <Route path="/solutions/security" element={<SecuritySolutions />} />
-        <Route path="/solutions/infrastructure" element={<InfrastructureSolutions />} />
-        <Route path="/solutions/modern-work" element={<ModernWorkSolutions />} />
-        <Route path="/products/secufortress" element={<Secufortress />} />
-        <Route path="/products/v-book" element={<VBook />} />
-        <Route path="/products/loan-app" element={<LoanApp />} />
-        <Route path="/products/telemetric" element={<Telemetric />} />
-        <Route path="/products/fraud-detection" element={<FraudDetection />} />
-        <Route path="/products/conveyancing" element={<Conveyancing />} />
-        <Route path="/services/implementation" element={<Implementation />} />
-        <Route path="/services/migration" element={<MigrationServices />} />
-        <Route path="/services/support" element={<SupportServices />} />
-        <Route path="/services/advisory" element={<AdvisoryServices />} />
-        <Route path="/services/security" element={<SecurityServices />} />
-        <Route path="/services/post-migration" element={<PostMigrationServices />} />
-        {/* Add more routes as needed for other components */}
-        <Route path="/contact" element={<div>Contact Us</div>} />
-      </Routes>
+      <div className="pt-20 md:pt-24 lg:pt-28">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {/* Home subcomponents can be routed or used inside Home if needed */}
+          <Route path="/who-we-are/about-us" element={<AboutUs />} />
+          <Route path="/who-we-are/partners" element={<Partners />} />
+          <Route path="/solutions/cloud" element={<CloudSolutions />} />
+          <Route path="/solutions/data" element={<DataSolutions />} />
+          <Route path="/solutions/ai" element={<AISolutions />} />
+          <Route path="/solutions/network" element={<NetworkSolutions />} />
+          <Route path="/solutions/security" element={<SecuritySolutions />} />
+          <Route path="/solutions/infrastructure" element={<InfrastructureSolutions />} />
+          <Route path="/solutions/modern-work" element={<ModernWorkSolutions />} />
+          <Route path="/products/secufortress" element={<Secufortress />} />
+          <Route path="/products/v-book" element={<VBook />} />
+          <Route path="/products/loan-app" element={<LoanApp />} />
+          <Route path="/products/telemetric" element={<Telemetric />} />
+          <Route path="/products/fraud-detection" element={<FraudDetection />} />
+          <Route path="/products/conveyancing" element={<Conveyancing />} />
+          <Route path="/services/implementation" element={<Implementation />} />
+          <Route path="/services/migration" element={<MigrationServices />} />
+          <Route path="/services/support" element={<SupportServices />} />
+          <Route path="/services/advisory" element={<AdvisoryServices />} />
+          <Route path="/services/security" element={<SecurityServices />} />
+          <Route path="/services/post-migration" element={<PostMigrationServices />} />
+          {/* Add more routes as needed for other components */}
+          <Route path="/contact" element={<div>Contact Us</div>} />
+        </Routes>
+      </div>
+      <Footer />
     </BrowserRouter>
   );
 }

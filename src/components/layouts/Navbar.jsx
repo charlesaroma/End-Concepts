@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Icon } from "@iconify/react";
 
@@ -52,6 +52,7 @@ const menuData = [
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
   const closeTimeout = useRef(null);
 
   // Dropdown Handlers
@@ -70,9 +71,16 @@ const Navbar = () => {
     setOpenDropdown(openDropdown === idx ? null : idx);
   };
 
+  // NEW: Scroll handler
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 0);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="relative">
-      <nav className="w-full flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-20 py-3 md:py-4 shadow-sm bg-white">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white">
+      <nav className={`w-full flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-20 py-3 md:py-4 bg-white transition-shadow duration-300 ${scrolled ? "shadow-sm" : ""}`}>
         {/* Logo */}
         <Link to="/" className="flex items-center flex-shrink-0">
           <img

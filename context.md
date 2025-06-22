@@ -38,3 +38,9 @@
 - Solutions are defined in a data array (icon + label).
 - Uses Tailwind for styling and Iconify for icons.
 - Section is imported and rendered in `0home.jsx` below the Hero.
+
+## Footer Implementation (2024-06-09)
+- The Footer component was implemented in `src/components/layouts/Footer.jsx` to match the provided UI reference.
+- Features: dark blue background, logo, Terms of Service and Privacy Policy buttons, columns for Our Expertise and Quick Links, contact info, and a bottom bar with copyright and social icons.
+- Responsive design using Tailwind CSS.
+- Footer is now rendered below the main content in `App.jsx`.
