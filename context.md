@@ -44,3 +44,12 @@
 - Features: dark blue background, logo, Terms of Service and Privacy Policy buttons, columns for Our Expertise and Quick Links, contact info, and a bottom bar with copyright and social icons.
 - Responsive design using Tailwind CSS.
 - Footer is now rendered below the main content in `App.jsx`.
+
+## "Our Numbers" Section (2024-06-09)
+- Implemented the "Our Numbers" component in `src/pages/1.Home/4OurNumber.jsx`.
+- Features a two-column layout with text on the left and a styled image on the right.
+- The section is fully responsive with a minimum height of `80vh`.
+- The image uses a custom `clip-path` to create a dynamic, "leaking" shape.
+
+## "Our Numbers" Section Update (2024-06-09)
+- Reverted to the original image and updated the `clip-path` style for a more geometric container shape.
