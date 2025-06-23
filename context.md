@@ -53,3 +53,31 @@
 
 ## "Our Numbers" Section Update (2024-06-09)
 - Reverted to the original image and updated the `clip-path` style for a more geometric container shape.
+
+## HomeService Section Mobile Responsiveness (2024-06-09)
+- Updated `src/pages/1.Home/3HomeService.jsx` to provide a mobile-friendly layout.
+- On mobile screens, the section now displays a simple, vertically-stacked layout with all services visible, avoiding scroll-based animation and overflow issues.
+- On desktop, the interactive scroll animation is preserved.
+
+## Who We Are Section Start (2024-06-09)
+- Began work on the 'Who We Are' section, starting with the About Us page.
+- All subpages (Our History, Our Values, Our Partners, etc.) will be imported and rendered in `src/pages/2.WhoWeAre/1AboutUs/0AboutUs.jsx`.
+- UI reference for the About Us page will be followed for layout and content.
+
+## About Us Section Navbar (2024-06-09)
+- Added a sticky section navbar to the About Us page in `0AboutUs.jsx`.
+- Navbar links scroll smoothly to the Our History, Our Values, and Our Partners sections by ID.
+- Active section is highlighted using a scroll spy effect.
+
+## About Us: Our History Section (2024-06-09)
+- Implemented the 'Our History' section in `1OurHistory.jsx`.
+- Features left-aligned heading and text, right-aligned CEO image with rounded corners and shadow.
+- Responsive layout using Tailwind CSS, following the UI reference.
+
+## About Us: Our History Section Update (2024-06-09)
+- Updated to use the local SimonKinuthia.jpg image from the assets folder.
+- Image and text are now side by side and centered; caption is below the image.
+
+## About Us: PartnersHero Section Routing (2024-06-09)
+- The About Us section navbar now scrolls to the PartnersHero section (from 2Partners/1PartnersHero.jsx).
+- PartnersHero is imported and rendered in the correct place in 0AboutUs.jsx.
