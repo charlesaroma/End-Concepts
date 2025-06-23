@@ -11,7 +11,7 @@ import OurNumber from './pages/1.Home/4OurNumber';
 import HomeCompanySlide from './pages/1.Home/5HomeCompanySlide';
 // Who We Are
 import AboutUs from './pages/2.WhoWeAre/1AboutUs/0AboutUs';
-import OurHistory from './pages/2.WhoWeAre/1AboutUs/1OurHistory';
+import OurHistory from './pages/2.WhoWeAre/1AboutUs/1AboutUsHero';
 import OurValues from './pages/2.WhoWeAre/1AboutUs/2OurValues';
 import OurPartners from './pages/2.WhoWeAre/1AboutUs/3OurPartners';
 import Partners from './pages/2.WhoWeAre/2Partners/0Partners';

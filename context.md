@@ -100,3 +100,10 @@
 - The Our Partners button now uses useNavigate for correct navigation to /who-we-are/partners.
 - The mobile menu icon is now the Iconify chevron-down/chevron-up icon instead of a custom SVG.
 - All navigation is now correct and consistent.
+
+## Manual Code Edits (2024-06-09)
+- The user made manual changes and edits to the codebase after the last automated update. Details not specified.
+
+## About Us: Hero and Values Section Update (2024-06-09)
+- The About Us hero section now uses a tech/cybersecurity image from a URL and the new company description.
+- The Our Values section now maps a random values array and displays each value with an icon, title, and description in a responsive layout.

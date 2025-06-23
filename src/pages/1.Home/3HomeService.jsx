@@ -119,7 +119,7 @@ const HomeService = () => {
               security, and competitiveness in the digital age.
             </p>
             <Link
-              to="/services"
+              to="/services/implementation"
               className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-[#001d6c] text-white font-medium shadow-lg hover:bg-[#163a8a] transition w-max"
             >
               See all our Services
