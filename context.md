@@ -78,6 +78,25 @@
 - Updated to use the local SimonKinuthia.jpg image from the assets folder.
 - Image and text are now side by side and centered; caption is below the image.
 
-## About Us: PartnersHero Section Routing (2024-06-09)
-- The About Us section navbar now scrolls to the PartnersHero section (from 2Partners/1PartnersHero.jsx).
-- PartnersHero is imported and rendered in the correct place in 0AboutUs.jsx.
+## About Us: Partners Link Routing Update (2024-06-09)
+- The About Us section navbar now links 'Our Partners' to the `/who-we-are/partners` route using react-router-dom's Link.
+- The PartnersHero and OurPartners components have been removed from the About Us page.
+
+## About Us: Fixed Section Navbar (2024-06-09)
+- The About Us section navbar is now fixed below the main Navbar, with a top offset to account for the Navbar's height.
+- Content spacing is adjusted to prevent overlap with the fixed navbars.
+- Navigation remains smooth and user-friendly.
+
+## About Us: Section Navbar Componentization (2024-06-09)
+- The About Us section navbar has been moved to a separate AboutNavbar.jsx component.
+- The parent AboutUs component now passes active and onNavClick as props.
+- All navigation and styling remain unchanged.
+
+## About Us: AboutNavbar Full Encapsulation (2024-06-09)
+- All AboutNavbar-related constants, state, and logic have been moved to AboutNavbar.jsx.
+- The AboutUs component now simply renders <AboutNavbar /> as a self-contained component.
+
+## About Us: Navbar Navigation and Icon Update (2024-06-09)
+- The Our Partners button now uses useNavigate for correct navigation to /who-we-are/partners.
+- The mobile menu icon is now the Iconify chevron-down/chevron-up icon instead of a custom SVG.
+- All navigation is now correct and consistent.
