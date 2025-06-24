@@ -9,7 +9,6 @@ const menuData = [
     label: "Who We Are",
     dropdown: [
       { label: "About Us", path: "/who-we-are/about-us" },
-      { label: "Partners", path: "/who-we-are/partners" },
     ],
   },
   {
