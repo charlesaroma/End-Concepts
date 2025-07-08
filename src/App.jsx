@@ -45,7 +45,8 @@ import SupportServices from './pages/5.OurServices/4SupportServices';
 import AdvisoryServices from './pages/5.OurServices/5AdvisoryServices';
 import SecurityServices from './pages/5.OurServices/6SecurityServices';
 import PostMigrationServices from './pages/5.OurServices/7PostMigrationServices';
-// Contact Us (if exists, otherwise keep placeholder)
+// Contact Us
+import ContactUs from './pages/6.ContactUs/contact';
 
 function App() {
   return (
@@ -77,7 +78,7 @@ function App() {
           <Route path="/services/security" element={<SecurityServices />} />
           <Route path="/services/post-migration" element={<PostMigrationServices />} />
           {/* Add more routes as needed for other components */}
-          <Route path="/contact" element={<div>Contact Us</div>} />
+          <Route path="/contact" element={<ContactUs />} />
         </Routes>
       </div>
       <Footer />
