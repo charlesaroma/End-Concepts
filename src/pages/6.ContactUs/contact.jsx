@@ -75,22 +75,7 @@ const ContactUs = () => {
 
   return (
     <div className="w-full bg-white">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-[#001d6c] to-[#003a9c] text-white py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Contact Us
-            </h1>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-              At END CONCEPTS, we are passionate about transforming businesses through smart, secure, and innovative technology solutions. With a strong foundation in IT services, data analytics, and digital transformation, we empower organizations of all sizes to thrive in an ever-evolving tech landscape.<br/><br/>
-              Our team of certified professionals brings deep expertise in cloud migration, cybersecurity, Microsoft 365 solutions, and managed IT support. Whether you're a growing business looking to scale with robust network infrastructure or a research team seeking meaningful data insights, we’re here to guide and support you every step of the way.<br/><br/>
-              We go beyond problem-solving — we future-proof your business. From seamless software development to tailored training programs, we help you harness technology as a strategic asset. Our data analysts and IT consultants not only deliver solutions but also ensure you and your team understand how to use them effectively.<br/><br/>
-              With a customer-first mindset, we’re committed to reliability, integrity, and measurable impact. Partner with us for services you can trust and a team that’s always ready to help your business succeed.
-            </p>
-          </div>
-        </div>
-      </div>
+
       {/* Contact Form and Info Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
