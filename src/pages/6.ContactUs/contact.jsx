@@ -23,8 +23,6 @@ const ContactUs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       alert('Thank you for your message! We will get back to you soon.');
@@ -44,40 +42,34 @@ const ContactUs = () => {
       icon: "mdi:phone",
       title: "Phone",
       details: [
-        "+254 700 000 000",
-        "+254 733 000 000"
+        "+256 785939224",
+        "+256 702190179",
+        "+256 705153856"
       ]
     },
     {
       icon: "mdi:email",
       title: "Email",
       details: [
-        "info@cragroup.co.ke",
-        "support@cragroup.co.ke"
+        "ofoemma@gmail.com",
+        "endconcepts@gmail.com"
       ]
     },
     {
       icon: "mdi:map-marker",
       title: "Address",
       details: [
-        "Nairobi, Kenya",
-        "Westlands, Nairobi"
+        "Kampala, Uganda"
       ]
     }
   ];
 
   const officeLocations = [
     {
-      city: "Nairobi",
-      address: "Westlands, Nairobi, Kenya",
-      phone: "+254 700 000 000",
-      email: "nairobi@cragroup.co.ke"
-    },
-    {
-      city: "Mombasa",
-      address: "Mombasa, Kenya",
-      phone: "+254 700 000 001",
-      email: "mombasa@cragroup.co.ke"
+      city: "Kampala",
+      address: "Kampala, Uganda",
+      phone: "+256 785939224",
+      email: "endconcepts@gmail.com"
     }
   ];
 
@@ -91,13 +83,14 @@ const ContactUs = () => {
               Contact Us
             </h1>
             <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
-              Ready to transform your business with our technology solutions? 
-              Get in touch with our expert team today.
+              At END CONCEPTS, we are passionate about transforming businesses through smart, secure, and innovative technology solutions. With a strong foundation in IT services, data analytics, and digital transformation, we empower organizations of all sizes to thrive in an ever-evolving tech landscape.<br/><br/>
+              Our team of certified professionals brings deep expertise in cloud migration, cybersecurity, Microsoft 365 solutions, and managed IT support. Whether you're a growing business looking to scale with robust network infrastructure or a research team seeking meaningful data insights, we’re here to guide and support you every step of the way.<br/><br/>
+              We go beyond problem-solving — we future-proof your business. From seamless software development to tailored training programs, we help you harness technology as a strategic asset. Our data analysts and IT consultants not only deliver solutions but also ensure you and your team understand how to use them effectively.<br/><br/>
+              With a customer-first mindset, we’re committed to reliability, integrity, and measurable impact. Partner with us for services you can trust and a team that’s always ready to help your business succeed.
             </p>
           </div>
         </div>
       </div>
-
       {/* Contact Form and Info Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -137,7 +130,6 @@ const ContactUs = () => {
                   />
                 </div>
               </div>
-              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
@@ -150,7 +142,7 @@ const ContactUs = () => {
                     value={formData.phone}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#001d6c] focus:border-transparent"
-                    placeholder="+254 700 000 000"
+                    placeholder="+256 785939224"
                   />
                 </div>
                 <div>
@@ -168,7 +160,6 @@ const ContactUs = () => {
                   />
                 </div>
               </div>
-
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
                   Subject *
@@ -184,7 +175,6 @@ const ContactUs = () => {
                   placeholder="What can we help you with?"
                 />
               </div>
-
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                   Message *
@@ -200,7 +190,6 @@ const ContactUs = () => {
                   placeholder="Tell us about your project or inquiry..."
                 />
               </div>
-
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -210,7 +199,6 @@ const ContactUs = () => {
               </button>
             </form>
           </div>
-
           {/* Contact Information */}
           <div className="space-y-8">
             <div>
@@ -220,7 +208,6 @@ const ContactUs = () => {
                 Reach out to us and let's discuss how we can drive your digital transformation journey.
               </p>
             </div>
-
             {/* Contact Details */}
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
@@ -242,7 +229,6 @@ const ContactUs = () => {
           </div>
         </div>
       </div>
-
       {/* Office Locations */}
       <div className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

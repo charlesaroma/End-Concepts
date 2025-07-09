@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="flex flex-col">
             <img
               src="/cragroup2.svg"
-              alt="CRA Group Logo"
+              alt="END CONCEPTS Logo"
               className="h-14 w-auto mb-4"
               loading="lazy"
             />
@@ -29,7 +29,7 @@ const Footer = () => {
           <div>
             <h4 className="font-bold mb-4 text-base uppercase tracking-wider">Our Expertise</h4>
             <ul className="space-y-2 text-sm">
-              {['Cloud Solutions', 'Data Solutions', 'AI Solutions', 'Network Solutions', 'Security Solutions', 'Data Center Solutions', 'Modern Work'].map((item) => (
+              {['Cloud Migration', 'Cybersecurity', 'Microsoft 365', 'Data Analytics', 'Managed IT Support', 'Network Infrastructure', 'Digital Transformation'].map((item) => (
                 <li key={item} className="hover:text-[#e88936] transition-colors cursor-pointer">
                   {item}
                 </li>
@@ -41,7 +41,7 @@ const Footer = () => {
           <div>
             <h4 className="font-bold mb-4 text-base uppercase tracking-wider">Quick Links</h4>
             <ul className="space-y-2 text-sm">
-              {['Home', 'Who We Are', 'Contact Us', 'Our Services', 'Secufortress', 'V-Book', 'Loan App'].map((item) => (
+              {['Home', 'About Us', 'Contact Us', 'Our Services', 'Cloud Migration', 'Cybersecurity', 'Data Analytics'].map((item) => (
                 <li key={item} className="hover:text-[#e88936] transition-colors cursor-pointer">
                   {item}
                 </li>
@@ -55,13 +55,13 @@ const Footer = () => {
             <div className="space-y-3 text-sm">
               <div>
                 <h5 className="font-semibold mb-1">Phone:</h5>
-                {['+254 20-2675208', '+254 20-2675207', '+254 20-2099726', '+254 057-2513222'].map((phone) => (
+                {['+256 785939224', '+256 702190179', '+256 705153856'].map((phone) => (
                   <p key={phone} className="hover:text-[#e88936] transition-colors cursor-pointer">{phone}</p>
                 ))}
               </div>
               <div>
                 <h5 className="font-semibold mb-1">Email:</h5>
-                {['info@cragroup.co.ke', 'sales@cragroup.co.ke'].map((email) => (
+                {['ofoemma@gmail.com', 'endconcepts@gmail.com'].map((email) => (
                   <p key={email} className="hover:text-[#e88936] transition-colors cursor-pointer break-all">{email}</p>
                 ))}
               </div>
@@ -71,7 +71,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/20 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <span className="text-xs text-white/80">© {new Date().getFullYear()} CRA Group. All Rights Reserved</span>
+          <span className="text-xs text-white/80">© {new Date().getFullYear()} END CONCEPTS. All Rights Reserved</span>
           
           <div className="flex gap-5">
             {[
