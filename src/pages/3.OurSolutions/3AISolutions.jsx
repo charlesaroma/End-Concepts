@@ -3,17 +3,17 @@ import React, { useState } from 'react';
 const tabData = [
   {
     label: "Generative AI",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80", // AI art/creative
     content: "Boost productivity and unleash creativity with generative AI. These innovative solutions enable you to effortlessly create content, including text, images, and audio, using simple prompts. They comprehend and process natural language to deliver the results you desire."
   },
   {
     label: "Microsoft Copilot",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80", // Copilot/AI assistant
     content: "Leverage Microsoft Copilot to enhance productivity and automate repetitive tasks using AI-powered assistance."
   },
   {
     label: "Machine Learning",
-    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80", // ML/graphs
     content: "Utilize machine learning algorithms to analyze data, predict trends, and make data-driven decisions."
   }
 ];
@@ -49,16 +49,16 @@ const AISolutions = () => {
       <div className="bg-[#001d6c] py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-white mb-8">AI Solutions</h2>
-          <div className="flex flex-wrap gap-4 mb-8">
+          <div className="flex border-b border-white/30 mb-8">
             {tabData.map((tab, idx) => (
               <button
                 key={tab.label}
                 onClick={() => setActiveTab(idx)}
-                className={`px-4 py-2 rounded-t-md font-semibold transition ${
-                  activeTab === idx
-                    ? "bg-white text-[#001d6c] border-b-4 border-[#f59e42]"
-                    : "bg-transparent text-white"
-                }`}
+                className={`px-4 py-2 font-semibold transition border-b-2 focus:outline-none cursor-pointer
+                  ${activeTab === idx
+                    ? "border-[#f59e42] text-[#f59e42] bg-white/5"
+                    : "border-transparent text-white hover:text-[#f59e42]"}
+                `}
               >
                 {tab.label}
               </button>

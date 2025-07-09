@@ -3,22 +3,22 @@ import React, { useState } from 'react';
 const tabData = [
   {
     label: "Network Infrastructure",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80", // Network racks
     content: "Design and implement robust network infrastructure solutions that provide reliable connectivity and optimal performance for your business operations."
   },
   {
     label: "Network Security",
-    image: "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=400&q=80", // Security lock
     content: "Comprehensive network security solutions including firewalls, intrusion detection, and advanced threat protection to safeguard your network."
   },
   {
     label: "Network Monitoring",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80", // Monitoring dashboard
     content: "Real-time network monitoring and analytics to ensure optimal performance and identify potential issues before they impact operations."
   },
   {
     label: "Network Optimization",
-    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=400&q=80", // Optimization/graphs
     content: "Network optimization services to improve performance, reduce latency, and enhance overall network efficiency."
   }
 ];
@@ -54,16 +54,16 @@ const NetworkSolutions = () => {
       <div className="bg-[#001d6c] py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-white mb-8">Network Solutions</h2>
-          <div className="flex flex-wrap gap-4 mb-8">
+          <div className="flex border-b border-white/30 mb-8">
             {tabData.map((tab, idx) => (
               <button
                 key={tab.label}
                 onClick={() => setActiveTab(idx)}
-                className={`px-4 py-2 rounded-t-md font-semibold transition ${
-                  activeTab === idx
-                    ? "bg-white text-[#001d6c] border-b-4 border-[#f59e42]"
-                    : "bg-transparent text-white"
-                }`}
+                className={`px-4 py-2 font-semibold transition border-b-2 focus:outline-none cursor-pointer
+                  ${activeTab === idx
+                    ? "border-[#f59e42] text-[#f59e42] bg-white/5"
+                    : "border-transparent text-white hover:text-[#f59e42]"}
+                `}
               >
                 {tab.label}
               </button>

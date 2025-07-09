@@ -63,7 +63,7 @@ const AdvisoryServices = () => {
           <div className="flex-1 w-full flex justify-center">
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
+                src="https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=400&q=80" // Advisory/consulting
                 alt="Advisory Services"
                 className="w-80 h-80 object-cover rounded-lg shadow-lg"
               />

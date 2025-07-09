@@ -63,7 +63,7 @@ const LoanApp = () => {
           <div className="flex-1 w-full flex justify-center">
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
+                src="https://images.unsplash.com/photo-1508385082359-f48b1c1b1f57?auto=format&fit=crop&w=400&q=80" // Digital lending/finance
                 alt="LoanApp Digital Lending"
                 className="w-80 h-80 object-cover rounded-lg shadow-lg"
               />

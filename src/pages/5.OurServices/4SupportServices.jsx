@@ -63,7 +63,7 @@ const SupportServices = () => {
           <div className="flex-1 w-full flex justify-center">
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80"
+                src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80" // Support/helpdesk
                 alt="Support Services"
                 className="w-80 h-80 object-cover rounded-lg shadow-lg"
               />

@@ -3,22 +3,22 @@ import React, { useState } from 'react';
 const tabData = [
   {
     label: "Server Management",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80", // Server racks
     content: "Comprehensive server management services including deployment, monitoring, maintenance, and optimization of your server infrastructure."
   },
   {
     label: "Storage Solutions",
-    image: "https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=400&q=80", // Storage drives
     content: "Scalable storage solutions designed to meet your data storage needs with high availability and performance."
   },
   {
     label: "Virtualization",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80", // Virtualization/VM
     content: "Virtualization technologies to optimize resource utilization and improve infrastructure efficiency."
   },
   {
     label: "Disaster Recovery",
-    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=400&q=80", // Recovery/backup
     content: "Comprehensive disaster recovery solutions to ensure business continuity and data protection."
   }
 ];
@@ -54,16 +54,16 @@ const InfrastructureSolutions = () => {
       <div className="bg-[#001d6c] py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-white mb-8">Infrastructure Solutions</h2>
-          <div className="flex flex-wrap gap-4 mb-8">
+          <div className="flex border-b border-white/30 mb-8">
             {tabData.map((tab, idx) => (
               <button
                 key={tab.label}
                 onClick={() => setActiveTab(idx)}
-                className={`px-4 py-2 rounded-t-md font-semibold transition ${
-                  activeTab === idx
-                    ? "bg-white text-[#001d6c] border-b-4 border-[#f59e42]"
-                    : "bg-transparent text-white"
-                }`}
+                className={`px-4 py-2 font-semibold transition border-b-2 focus:outline-none cursor-pointer
+                  ${activeTab === idx
+                    ? "border-[#f59e42] text-[#f59e42] bg-white/5"
+                    : "border-transparent text-white hover:text-[#f59e42]"}
+                `}
               >
                 {tab.label}
               </button>

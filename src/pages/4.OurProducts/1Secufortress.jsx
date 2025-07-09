@@ -63,7 +63,7 @@ const Secufortress = () => {
           <div className="flex-1 w-full flex justify-center">
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=400&q=80"
+                src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=400&q=80" // Cybersecurity lock
                 alt="Secufortress Security"
                 className="w-80 h-80 object-cover rounded-lg shadow-lg"
               />

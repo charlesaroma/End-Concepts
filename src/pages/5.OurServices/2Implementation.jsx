@@ -63,7 +63,7 @@ const Implementation = () => {
           <div className="flex-1 w-full flex justify-center">
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80"
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" // Implementation/project management
                 alt="Implementation Services"
                 className="w-80 h-80 object-cover rounded-lg shadow-lg"
               />

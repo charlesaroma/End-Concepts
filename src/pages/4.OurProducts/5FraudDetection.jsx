@@ -63,7 +63,7 @@ const FraudDetection = () => {
           <div className="flex-1 w-full flex justify-center">
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=400&q=80"
+                src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80" // AI/fraud detection
                 alt="Fraud Detection AI"
                 className="w-80 h-80 object-cover rounded-lg shadow-lg"
               />

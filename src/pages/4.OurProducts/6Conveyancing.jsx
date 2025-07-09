@@ -63,7 +63,7 @@ const Conveyancing = () => {
           <div className="flex-1 w-full flex justify-center">
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=400&q=80"
+                src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" // Legal tech/property transfer
                 alt="Conveyancing Legal Tech"
                 className="w-80 h-80 object-cover rounded-lg shadow-lg"
               />
