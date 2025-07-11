@@ -187,3 +187,10 @@
 - This provides a consistent, smooth scrolling experience across all pages and sections.
 - The implementation affects all scroll behaviors including anchor links, programmatic scrolling, and navigation.
 - Browser support is excellent for this CSS property, ensuring compatibility across all modern browsers.
+
+## Overflow Control Implementation (2024-12-19)
+- Added `overflow-x: hidden` to both HTML and body elements to prevent horizontal scrolling.
+- Applied to `index.html` in the inline styles and `src/index.css` for comprehensive coverage.
+- This ensures no horizontal scrollbars appear across any components or pages.
+- Prevents layout issues caused by elements extending beyond viewport width.
+- Maintains clean, contained layouts across all device sizes and screen resolutions.
