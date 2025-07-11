@@ -180,3 +180,10 @@
 - All solution, service, and value icons now use Iconify for consistency and scalability.
 - This standardization ensures a unified, scalable, and easily managed icon system throughout the project.
 - No remaining inline SVG icons are present in the codebase; all are now Iconify-based.
+
+## Smooth Scrolling Implementation (2024-12-19)
+- Added smooth scrolling to the entire website by implementing `scroll-behavior: smooth` in the HTML element.
+- The CSS property was added to `index.html` in the head section using an inline style tag.
+- This provides a consistent, smooth scrolling experience across all pages and sections.
+- The implementation affects all scroll behaviors including anchor links, programmatic scrolling, and navigation.
+- Browser support is excellent for this CSS property, ensuring compatibility across all modern browsers.
