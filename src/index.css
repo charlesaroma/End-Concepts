@@ -9,6 +9,13 @@
   --font-roboto-flex: "Roboto Flex", sans-serif;
 }
 
+/* In index.html */
+html, body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* In src/index.css */
 body {
   font-family: var(--font-roboto);
   overflow-x: hidden;
